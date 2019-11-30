@@ -8,6 +8,29 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'app',
+  mounted () {
+    if (this.$util.browserDetection() === 'PC') {
+      let that = this
+      this.setRemFontSize()
+      window.addEventListener('resize', function () {
+        setTimeout(() => {
+          that.setRemFontSize()
+        }, 1000)
+      })
+    }
+  },
+  methods: {
+    setRemFontSize () {
+      let remSize = window.innerWidth / 19.2
+      document.querySelector('html').style.fontSize = remSize + 'px'
+    }
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
